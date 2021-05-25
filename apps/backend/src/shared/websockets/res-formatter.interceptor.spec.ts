@@ -1,15 +1,15 @@
 import { WsException } from '@nestjs/websockets';
 import { of, throwError } from 'rxjs';
-import { WsResponseFormatInterceptor } from './ws-response-format.interceptor';
+import { WsResFormatterInterceptor } from './res-formatter.interceptor';
 
 const callHandler = {
   handle: jest.fn(),
 };
 
-let formatInterceptor: WsResponseFormatInterceptor;
+let formatInterceptor: WsResFormatterInterceptor;
 
 beforeEach(() => {
-  formatInterceptor = new WsResponseFormatInterceptor();
+  formatInterceptor = new WsResFormatterInterceptor();
 });
 
 describe('WsResponseFormatInterceptor', () => {
