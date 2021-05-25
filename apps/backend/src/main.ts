@@ -1,9 +1,9 @@
-require('dotenv').config();
-
+import * as dotenv from 'dotenv';
+dotenv.config();
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app/app.module';
-import { SocketIoAdapter } from './app/shared/websockets/socketio.adapter';
+import { SocketIoAdapter } from './shared/websockets/socketio.adapter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
