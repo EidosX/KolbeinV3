@@ -1,3 +1,4 @@
+/* eslint-disable */
 /* Written by MickL on https://github.com/nestjs/nest/issues/5676 */
 
 import { INestApplicationContext } from '@nestjs/common';
