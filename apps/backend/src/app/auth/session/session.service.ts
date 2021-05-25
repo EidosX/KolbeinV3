@@ -26,7 +26,7 @@ export class SessionService {
   public async getUser(sessionId: string): Promise<UserDocument> {
     return (
       await this.sessionModel.findOne({ sessionId }).populate('user').exec()
-    ).user;
+    )?.user;
   }
 
   private readonly sessionTTL = process.env.SESSION_TTL;
