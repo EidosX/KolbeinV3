@@ -10,7 +10,7 @@ import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
 export class WsResponseFormatInterceptor implements NestInterceptor {
-  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<unknown> {
     return next.handle().pipe(
       map((r) => ({
         status: 'Ok',
