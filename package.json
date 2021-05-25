@@ -29,9 +29,14 @@
   "dependencies": {
     "@nestjs/common": "^7.0.0",
     "@nestjs/core": "^7.0.0",
+    "@nestjs/mongoose": "^7.2.4",
     "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/websockets": "^7.6.17",
+    "mongoose": "^5.12.11",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.6.3",
+    "socket.io": "^4.1.2",
+    "tmi.js": "^1.8.3",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
