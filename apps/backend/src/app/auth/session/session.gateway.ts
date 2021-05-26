@@ -24,12 +24,12 @@ export class SessionGateway {
   @SubscribeMessage('register session')
   async registerSession(
     socket: Socket,
-    data: RegisterSessionInputDTO
+    data?: RegisterSessionInputDTO
   ): Promise<RegisterSessionResDTO> {
     const parsedSessionId: string =
-      typeof data.sessionClientString === 'string' &&
+      typeof data?.sessionClientString === 'string' &&
       this.sessionCryptoService.verifyClientStringAndGetId(
-        data.sessionClientString
+        data?.sessionClientString
       );
 
     if (parsedSessionId) {
