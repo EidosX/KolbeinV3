@@ -24,6 +24,7 @@ export class SessionService {
   }
 
   public async getUser(sessionId: string): Promise<UserDocument> {
+    if (!sessionId) return null;
     return (
       await this.sessionModel.findOne({ sessionId }).populate('user').exec()
     )?.user;
