@@ -11,13 +11,13 @@ export class User {
   twitchName: string;
 
   @Prop()
-  displayName: string;
+  displayName?: string;
 
   @Prop({ type: String, enum: ranks, required: true, default: 'user' })
   rank: Rank;
 
   @Prop({ type: Map, of: String })
-  socials: Record<string, string>;
+  socials?: Record<string, string>;
 }
 
 export type UserDocument = User & Document;
