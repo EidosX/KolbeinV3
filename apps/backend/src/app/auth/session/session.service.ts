@@ -30,5 +30,5 @@ export class SessionService {
     )?.user;
   }
 
-  private readonly sessionTTL = process.env.SESSION_TTL;
+  private readonly sessionTTL = parseInt(process.env.SESSION_TTL) || 120000;
 }
