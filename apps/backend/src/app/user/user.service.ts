@@ -16,4 +16,8 @@ export class UserService {
   public async getByTwitchId(twitchId: string): Promise<UserDocument> {
     return await this.userModel.findOne({ twitchId }).exec();
   }
+
+  public async create(twitchId: string, twitchName: string) {
+    return await this.userModel.create({ twitchId, twitchName });
+  }
 }
