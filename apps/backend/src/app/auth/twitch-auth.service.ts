@@ -2,11 +2,15 @@ import { TwitchChatMsg } from '@interfaces/twitch-chat-msg';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { filter } from 'rxjs/operators';
 import { Socket } from '../../shared/websockets/socket.interface';
+import { TwitchAuthCryptoService } from '../crypto/twitch-auth/twitch-auth-crypto.service';
 import { TwitchBotService } from '../twitch-bot/twitch-bot.service';
 
 @Injectable()
 export class TwitchAuthService implements OnModuleInit {
-  constructor(private readonly twitchBotService: TwitchBotService) {}
+  constructor(
+    private readonly twitchAuthCryptoService: TwitchAuthCryptoService,
+    private readonly twitchBotService: TwitchBotService
+  ) {}
   onModuleInit() {
     /* Expired codes removal */
 
@@ -64,6 +68,14 @@ export class TwitchAuthService implements OnModuleInit {
 
   public getAllPendingCodes(): IterableIterator<PendingCode> {
     return this.pendingCodesMap.values();
+  }
+
+  public generateCodeRetryIfAlreadyExists(): string {
+    let code: string;
+    do {
+      code = this.twitchAuthCryptoService.generateCode();
+    } while (this.codeAlreadyExists(code));
+    return code;
   }
 
   private readonly pendingCodesMap: Map<string, PendingCode> = new Map();

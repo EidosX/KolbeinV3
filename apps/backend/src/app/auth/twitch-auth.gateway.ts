@@ -4,7 +4,6 @@ import {
   WebSocketGateway,
 } from '@nestjs/websockets';
 import { Socket } from '../../shared/websockets/socket.interface';
-import { TwitchAuthCryptoService } from '../crypto/twitch-auth/twitch-auth-crypto.service';
 import { SessionService } from './session/session.service';
 import {
   GetTwitchAuthCodeResDTO,
@@ -23,7 +22,6 @@ import { TwitchChatMsg } from '@interfaces/twitch-chat-msg';
 export class TwitchAuthGateway {
   constructor(
     private readonly sessionService: SessionService,
-    private readonly twitchAuthCryptoService: TwitchAuthCryptoService,
     private readonly userService: UserService,
     private readonly twitchAuthService: TwitchAuthService
   ) {}
@@ -45,14 +43,9 @@ export class TwitchAuthGateway {
     const existingUser = await this.sessionService.getUser(sessionId);
     if (existingUser) throw new AlreadyConnectedError(existingUser.twitchName);
 
-    // If the session already has a pending code, we take it.
-    // Else, we take the first generated code not already existing.
-    let code: string = this.twitchAuthService.findCodeBySessionID(sessionId);
-    if (!code) {
-      do {
-        code = this.twitchAuthCryptoService.generateCode();
-      } while (this.twitchAuthService.codeAlreadyExists(code));
-    }
+    const code: string =
+      this.twitchAuthService.findCodeBySessionID(sessionId) ||
+      this.twitchAuthService.generateCodeRetryIfAlreadyExists();
 
     // This function is called once someone types the code in the twitch tchat
     const onIdentification = async (msg: TwitchChatMsg) => {
