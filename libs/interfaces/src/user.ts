@@ -17,7 +17,7 @@ export class User {
   rank: Rank;
 
   @Prop({ type: Map, of: String })
-  socials?: Record<string, string>;
+  socials?: Map<string, string>;
 }
 
 export type UserDocument = User & Document;
