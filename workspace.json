@@ -82,7 +82,7 @@
             "main": "apps/frontend/src/main.ts",
             "polyfills": "apps/frontend/src/polyfills.ts",
             "tsConfig": "apps/frontend/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
+            "inlineStyleLanguage": "sass",
             "assets": [
               "apps/frontend/src/favicon.ico",
               "apps/frontend/src/assets"
@@ -189,18 +189,18 @@
   },
   "generators": {
     "@nrwl/angular:application": {
-      "style": "scss",
+      "style": "sass",
       "linter": "eslint",
       "unitTestRunner": "jest",
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
-      "style": "scss",
+      "style": "sass",
       "linter": "eslint",
       "unitTestRunner": "jest"
     },
     "@nrwl/angular:component": {
-      "style": "scss"
+      "style": "sass"
     }
   }
 }
