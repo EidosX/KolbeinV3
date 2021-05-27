@@ -6,23 +6,19 @@ const callHandler = {
   handle: jest.fn(),
 };
 
-let formatInterceptor: WsResFormatterInterceptor;
-
-beforeEach(() => {
-  formatInterceptor = new WsResFormatterInterceptor();
-});
+const dataFormatInterceptor = new WsResFormatterInterceptor();
 
 describe('WsResponseFormatInterceptor', () => {
   it('transforms a return value', async () => {
     callHandler.handle.mockReturnValue(of({ data: 'blabla', more: 1 }));
-    const actualValue = await formatInterceptor
+    const actualValue = await dataFormatInterceptor
       .intercept(null, callHandler)
       .toPromise();
     expect(actualValue).toEqual({ status: 'Ok', data: 'blabla', more: 1 });
   });
   it("doesn't spread primitives", async () => {
     callHandler.handle.mockReturnValue(of('a string'));
-    const actualValue = await formatInterceptor
+    const actualValue = await dataFormatInterceptor
       .intercept(null, callHandler)
       .toPromise();
     expect(actualValue).toEqual({ status: 'Ok', value: 'a string' });
@@ -31,7 +27,7 @@ describe('WsResponseFormatInterceptor', () => {
     callHandler.handle.mockReturnValue(
       of({ data: 'blabla', status: 'Waiting' })
     );
-    const actualValue = await formatInterceptor
+    const actualValue = await dataFormatInterceptor
       .intercept(null, callHandler)
       .toPromise();
     expect(actualValue).toEqual({ status: 'Waiting', data: 'blabla' });
@@ -40,7 +36,7 @@ describe('WsResponseFormatInterceptor', () => {
     callHandler.handle.mockReturnValue(
       throwError(new WsException('oh shoot!'))
     );
-    const actualValue = await formatInterceptor
+    const actualValue = await dataFormatInterceptor
       .intercept(null, callHandler)
       .toPromise();
     expect(actualValue).toMatchObject({

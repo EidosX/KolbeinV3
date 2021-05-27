@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { SessionCryptoService } from './sessions-crypto.service';
+import { SessionCryptoService } from './session-crypto.service';
 
 describe('SessionsCryptoService', () => {
   let service: SessionCryptoService;
