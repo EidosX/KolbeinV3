@@ -5,16 +5,16 @@ import { Document } from 'mongoose';
 @Schema()
 export class User {
   @Prop({ unique: true, required: true })
-  twitchId: string;
+  twitchId!: string;
 
   @Prop({ required: true })
-  twitchName: string;
+  twitchName!: string;
 
   @Prop()
   displayName?: string;
 
   @Prop({ type: String, enum: ranks, required: true, default: 'user' })
-  rank: Rank;
+  rank!: Rank;
 
   @Prop({ type: Map, of: String })
   socials?: Map<string, string>;

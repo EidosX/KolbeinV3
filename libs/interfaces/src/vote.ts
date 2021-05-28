@@ -5,10 +5,10 @@ import { UserDocument } from './user';
 @Schema()
 export class Participation {
   @Prop({ type: [{ type: Types.ObjectId, ref: 'User' }], required: true })
-  authors: UserDocument[];
+  authors!: UserDocument[];
 
   @Prop({ required: true })
-  audioLink: string;
+  audioLink!: string;
 }
 export type ParticipationDocument = Participation & Document;
 const participationSchema = SchemaFactory.createForClass(Participation);
@@ -19,19 +19,19 @@ export class Vote {
     required: true,
     default: () => `Vote (${new Date().toLocaleString('fr-FR')})`,
   })
-  title: string;
+  title!: string;
 
   @Prop({ type: Date, required: true, default: Date.now })
-  created: Date;
+  created!: Date;
 
   @Prop({ required: true, default: false })
-  active: boolean;
+  active!: boolean;
 
   @Prop({ required: true, default: false })
-  publicResults: boolean;
+  publicResults!: boolean;
 
   @Prop({ type: [participationSchema], required: true, default: [] })
-  participations: ParticipationDocument[];
+  participations!: ParticipationDocument[];
 
   @Prop({
     type: Map,
@@ -39,7 +39,7 @@ export class Vote {
     required: true,
     default: new Map(),
   })
-  entries: Map<string, ParticipationDocument>; // Maps twitchID to Participation
+  entries!: Map<string, ParticipationDocument>; // Maps twitchID to Participation
 }
 
 export type VoteDocument = Vote & Document;
