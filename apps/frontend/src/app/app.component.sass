@@ -5,6 +5,7 @@
 #background-img
   object-fit: cover
   z-index: -999
+  user-select: none
 .center
   display: grid
   place-items: center
@@ -12,3 +13,5 @@
 #main-container
   width: min(47rem, 100%)
   height: min(34rem, 100%)
+  @media screen and ( max-width: 47rem )
+    height: 100%

@@ -1,0 +1,20 @@
+<div id="main-container">
+  <div id="title-container">
+    <h1>Connexion</h1>
+  </div>
+  <div id="auth-container">
+    <h3>
+      Entrez ce code dans le tchat <br />
+      pour vous connecter
+    </h3>
+    <h2 id="code">
+      {{ code$ | async }}
+    </h2>
+    <span class="separator">
+      <hr />
+      <p>ou</p>
+      <hr />
+    </span>
+    <button>Se connecter avec <strong>Twitch</strong></button>
+  </div>
+</div>
