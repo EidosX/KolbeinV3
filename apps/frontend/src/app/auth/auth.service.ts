@@ -5,7 +5,7 @@ import {
   RegisterSessionInputDTO,
   RegisterSessionResDTO,
 } from '@interfaces/dto/session.dto';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { UserDocument } from '@interfaces/user';
 import { ErrorResDTO } from '@interfaces/dto/common.dto';
 import {
@@ -16,6 +16,7 @@ import {
 @Injectable()
 export class AuthService {
   private readonly authSocket = io('ws://' + BACKEND_DOMAIN + '/auth');
+  private readonly sessionRegistered$ = new ReplaySubject<void>(1);
   public readonly user$ = new BehaviorSubject<UserDocument | null>(null);
   public readonly code$ = new BehaviorSubject<string | null>(null);
 
@@ -38,19 +39,21 @@ export class AuthService {
     });
   }
 
-  public fetchCode() {
-    this.authSocket.emit(
-      'get twitch auth code',
-      null,
-      (res: GetTwitchAuthCodeResDTO) => {
-        if (res.code) this.code$.next(res.code);
-        else {
-          const err: ErrorResDTO = (res as unknown) as ErrorResDTO;
-          console.error(err);
-          // TODO: UI Alert
+  public async fetchTwitchAuthCode() {
+    this.sessionRegistered$.subscribe(() => {
+      this.authSocket.emit(
+        'get twitch auth code',
+        null,
+        (res: GetTwitchAuthCodeResDTO) => {
+          if (res.code) this.code$.next(res.code);
+          else {
+            const err: ErrorResDTO = (res as unknown) as ErrorResDTO;
+            console.error(err);
+            // TODO: UI Alert
+          }
         }
-      }
-    );
+      );
+    });
   }
 
   /*
@@ -66,10 +69,12 @@ export class AuthService {
       (res: RegisterSessionResDTO) => {
         if (res.status === 'Connected') {
           this.user$.next(res.user);
+          this.sessionRegistered$.next();
         } else if (res.status === 'Disconnected') {
           const sessionClientStr = res.sessionClientString;
           if (sessionClientStr)
             localStorage.setItem('sessionClientString', sessionClientStr);
+          this.sessionRegistered$.next();
         } else {
           const err: ErrorResDTO = res;
           console.error(err);

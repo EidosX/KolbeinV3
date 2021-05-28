@@ -9,6 +9,6 @@ import { AuthService } from './auth.service';
 export class AuthComponent implements OnInit {
   constructor(readonly authService: AuthService) {}
   ngOnInit() {
-    this.authService.fetchCode();
+    this.authService.fetchTwitchAuthCode();
   }
 }
