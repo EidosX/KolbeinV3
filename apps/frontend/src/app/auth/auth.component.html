@@ -23,7 +23,26 @@
       Entrez ce code dans le tchat <br />
       pour vous connecter
     </h3>
-    <h2 id="code" @fadeIn>&nbsp;{{ authService.code$ | async }}&nbsp;</h2>
+    <span
+      style="
+        width: 100%;
+        height: 3.5rem;
+        display: flex;
+        justify-content: center;
+      "
+    >
+      <button
+        *ngIf="!(authService.code$ | async)"
+        @fade
+        (click)="authService.fetchTwitchAuthCode()"
+        id="fetch-code-btn"
+      >
+        Demander un nouveau code
+      </button>
+      <h2 *ngIf="authService.code$ | async" id="code" @fade>
+        {{ authService.code$ | async }}
+      </h2>
+    </span>
     <span class="separator">
       <hr />
       <p>ou</p>

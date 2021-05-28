@@ -7,10 +7,10 @@ import { AuthService } from './auth.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.sass'],
   animations: [
-    trigger('fadeIn', [
-      transition('void => *', [
+    trigger('fade', [
+      transition(':enter', [
         style({ opacity: 0 }),
-        animate('500ms ease-in', style({ opacity: '*' })),
+        animate('450ms 100ms ease-in', style({ opacity: '*' })),
       ]),
     ]),
   ],
