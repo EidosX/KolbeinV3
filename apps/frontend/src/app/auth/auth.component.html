@@ -3,6 +3,22 @@
     <h1>Connexion</h1>
   </div>
   <div id="auth-container">
+    <ng-container
+      *ngIf="authService.user$ | async; then alreadyconnected; else connection"
+    ></ng-container>
+  </div>
+  <ng-template #alreadyconnected>
+    <div style="display: grid; place-items: center; gap: 0.5rem">
+      <h3>Vous etes déjà connecté en tant que</h3>
+      <h1 style="font-size: 2.5rem">
+        <strong>{{
+          (authService.user$ | async)?.displayName ||
+            (authService.user$ | async)?.twitchName
+        }}</strong>
+      </h1>
+    </div>
+  </ng-template>
+  <ng-template #connection>
     <h3>
       Entrez ce code dans le tchat <br />
       pour vous connecter
@@ -16,5 +32,5 @@
       <hr />
     </span>
     <button>Se connecter avec <strong>Twitch</strong></button>
-  </div>
+  </ng-template>
 </div>
