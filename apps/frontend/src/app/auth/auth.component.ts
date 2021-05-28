@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth.service';
 
 @Component({
@@ -7,8 +6,9 @@ import { AuthService } from './auth.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.sass'],
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
   constructor(readonly authService: AuthService) {}
-
-  code$ = new BehaviorSubject<string | null>('C9KP');
+  ngOnInit() {
+    this.authService.fetchCode();
+  }
 }

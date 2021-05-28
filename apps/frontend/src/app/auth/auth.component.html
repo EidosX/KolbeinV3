@@ -9,7 +9,7 @@
   </div>
   <ng-template #alreadyconnected>
     <div style="display: grid; place-items: center; gap: 0.5rem">
-      <h3>Vous etes déjà connecté en tant que</h3>
+      <h3>Vous etes connecté en tant que</h3>
       <h1 style="font-size: 2.5rem">
         <strong>{{
           (authService.user$ | async)?.displayName ||
@@ -24,7 +24,7 @@
       pour vous connecter
     </h3>
     <h2 id="code">
-      {{ code$ | async }}
+      {{ authService.code$ | async }}
     </h2>
     <span class="separator">
       <hr />
