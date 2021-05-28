@@ -1,5 +1,14 @@
-#background-img
+#background-img, .center
   width: 100vw
   height: 100vh
-  object-fit: cover
   position: absolute
+#background-img
+  object-fit: cover
+  z-index: -999
+.center
+  display: grid
+  place-items: center
+
+#main-container
+  width: min(47rem, 100%)
+  height: min(34rem, 100%)
