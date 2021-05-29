@@ -32,7 +32,6 @@ export class AuthService {
         const currentCode = this.code$.getValue();
         if (res.code === currentCode) {
           this.code$.next(null);
-          console.error(`Code ${currentCode} has expired`);
           // TODO: UI Alert
         }
       }
