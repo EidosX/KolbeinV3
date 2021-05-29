@@ -1,4 +1,4 @@
-#background-img, .center
+#background-img, .wrapper
   width: 100vw
   height: 100vh
   position: absolute
@@ -6,9 +6,14 @@
   object-fit: cover
   z-index: -999
   user-select: none
+.wrapper
+  display: flex
+  flex-direction: column
 .center
   display: grid
   place-items: center
+  width: 100%
+  flex-grow: 1
 
 #main-container
   width: min(47rem, 100%)

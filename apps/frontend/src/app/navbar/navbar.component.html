@@ -1,0 +1,13 @@
+<nav>
+  <ul>
+    <li routerLink="/">Kolbein</li>
+    <li routerLink="votes">Votes</li>
+    <li
+      *ngIf="authService.user$ | async"
+      routerLink="users/{{ (authService.user$ | async)?.id }}"
+    >
+      Mon compte
+    </li>
+    <li *ngIf="!(authService.user$ | async)" routerLink="auth">Connexion</li>
+  </ul>
+</nav>

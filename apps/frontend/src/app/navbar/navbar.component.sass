@@ -1,0 +1,28 @@
+@import '../../shared/styles/colors'
+
+nav
+  display: flex
+  justify-content: center
+  background-color: rgba($primary-100, 80%)
+
+nav ul
+  display: flex
+  align-items: center
+  height: 3rem
+  gap: 2rem
+  width: 47rem
+  padding: 0 1rem
+
+  li
+    font-size: .9rem
+    cursor: pointer
+    box-sizing: border-box
+    opacity: .8
+    transition: text-shadow 200ms
+    &:hover
+      text-shadow: 0 0 .4rem $primary-900
+    &:first-child
+      font-size: 1.15rem
+      margin-right: auto
+      font-weight: bolder
+      opacity: 1
