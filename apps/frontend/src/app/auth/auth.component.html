@@ -41,6 +41,13 @@
       </button>
       <h2 *ngIf="authService.code$ | async" id="code" @fade>
         {{ authService.code$ | async }}
+        <img
+          class="clipboard"
+          title="Copier"
+          src="assets/svg/clipboard.svg"
+          ngxClipboard
+          [cbContent]="(authService.code$ | async) || undefined"
+        />
       </h2>
     </span>
     <span class="separator">
