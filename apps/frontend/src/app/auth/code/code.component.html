@@ -1,0 +1,20 @@
+<span id="main-container">
+  <button
+    *ngIf="!(authService.code$ | async)"
+    @fade
+    (click)="authService.fetchTwitchAuthCode()"
+    id="fetch-code-btn"
+  >
+    Demander un nouveau code
+  </button>
+  <h2 *ngIf="authService.code$ | async" id="code" @fade>
+    {{ authService.code$ | async }}
+    <img
+      class="clipboard"
+      title="Copier"
+      src="assets/svg/clipboard.svg"
+      ngxClipboard
+      [cbContent]="(authService.code$ | async) || undefined"
+    />
+  </h2>
+</span>
