@@ -4,7 +4,7 @@
     <li routerLink="votes">Votes</li>
     <li
       *ngIf="authService.user$ | async"
-      routerLink="users/{{ (authService.user$ | async)?.id }}"
+      routerLink="users/{{ (authService.user$ | async)?._id }}"
     >
       Mon compte
     </li>
