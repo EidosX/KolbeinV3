@@ -4,7 +4,6 @@ import { UserModule } from './user/user.module';
 import { TwitchBotModule } from './twitch-bot/twitch-bot.module';
 import { AuthModule } from './auth/auth.module';
 import { CryptoModule } from './crypto/crypto.module';
-import { VoteModule } from './vote/vote.module';
 
 @Module({
   imports: [
@@ -13,7 +12,6 @@ import { VoteModule } from './vote/vote.module';
     TwitchBotModule,
     CryptoModule,
     AuthModule,
-    VoteModule,
   ],
   controllers: [],
   providers: [],
