@@ -11,7 +11,7 @@ export interface PublicUser {
   twitchName: string;
   displayName?: string;
   rank: Rank;
-  socials?: Map<string, string>;
+  socials?: Record<string, string>;
   description?: string;
   voteThanksMsg?: string;
 }

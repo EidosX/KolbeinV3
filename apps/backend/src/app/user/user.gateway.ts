@@ -27,7 +27,7 @@ export class UserGateway {
         rank: user.rank,
         twitchName: user.twitchName,
         displayName: user.displayName,
-        socials: user.socials,
+        socials: (user.socials as unknown) as Record<string, string>,
         description: user.description,
         voteThanksMsg: user.voteThanksMsg,
       },
