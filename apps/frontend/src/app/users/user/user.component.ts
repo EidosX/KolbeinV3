@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'kolbein-v3-user',
@@ -6,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./user.component.sass'],
 })
 export class UserComponent {
+  constructor(readonly usersService: UsersService) {}
   section: Section = 'general';
 }
 
