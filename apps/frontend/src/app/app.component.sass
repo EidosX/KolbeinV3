@@ -1,22 +1,20 @@
-#background-img, .wrapper
+@use '../shared/styles/globals'
+
+#background-img
   width: 100vw
   height: 100vh
   position: absolute
-#background-img
   object-fit: cover
   z-index: -999
   user-select: none
-.wrapper
-  display: flex
-  flex-direction: column
+
 .center
   display: grid
   place-items: center
   width: 100%
-  flex-grow: 1
-
+  height: calc(100vh - #{globals.$navbar-height})
 #main-container
   width: min(47rem, 100%)
-  height: min(34rem, 100%)
+  height: min(34rem, 100vh - #{globals.$navbar-height})
   @media screen and ( max-width: 47rem )
-    height: 100%
+    height: calc(100vh - #{globals.$navbar-height})
