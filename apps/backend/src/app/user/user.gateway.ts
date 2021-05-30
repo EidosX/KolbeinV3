@@ -28,6 +28,8 @@ export class UserGateway {
         twitchName: user.twitchName,
         displayName: user.displayName,
         socials: user.socials,
+        description: user.description,
+        voteThanksMsg: user.voteThanksMsg,
       },
     };
   }

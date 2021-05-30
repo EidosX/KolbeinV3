@@ -12,4 +12,6 @@ export interface PublicUser {
   displayName?: string;
   rank: Rank;
   socials?: Map<string, string>;
+  description?: string;
+  voteThanksMsg?: string;
 }

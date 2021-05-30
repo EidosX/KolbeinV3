@@ -18,6 +18,12 @@ export class User {
 
   @Prop({ type: Map, of: String })
   socials?: Map<string, string>;
+
+  @Prop()
+  description?: string;
+
+  @Prop()
+  voteThanksMsg?: string;
 }
 
 export type UserDocument = User & Document;
