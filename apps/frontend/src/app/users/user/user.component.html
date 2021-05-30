@@ -1,0 +1,77 @@
+<div id="banner-section">
+  <img
+    class="banner"
+    src="https://res.cloudinary.com/redrikudo/image/upload/c_crop,h_1856,y_549/v1622296506/kolbeinapp/users/banners/default.jpg"
+    alt="Bannière utilisateur"
+  />
+  <h1>{{ 'RedRikudo' }}</h1>
+</div>
+<div id="main">
+  <ul id="sections-list">
+    <li (click)="section = 'general'">Géneral</li>
+    <li (click)="section = 'socials'">Réseaux</li>
+    <li (click)="section = 'challenges'">Challenges</li>
+    <li (click)="section = 'actions'">Actions</li>
+  </ul>
+  <div id="sections">
+    <section id="general-section" [hidden]="section !== 'general'">
+      <h2>Identité</h2>
+      <p>
+        Nom d'apparence: <strong>{{ 'RedRikudo' }}</strong>
+      </p>
+      <p>
+        Pseudo Twitch: <strong>{{ 'redrikudo' }}</strong>
+      </p>
+      <p>
+        Rang: <strong>{{ 'Developpeur' }}</strong>
+      </p>
+      <h2>Description</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
+        eveniet assumenda exercitationem facere error ab, id quasi laboriosam!
+        Odio hic accusamus, voluptatem perferendis recusandae officia esse
+        facilis eaque facere, vero animi perspiciatis earum cumque id unde,
+        velit itaque architecto fugiat iste quos sequi doloremque? Perferendis
+        facilis voluptatum itaque magnam quis, ducimus sequi dolore commodi quae
+        est consequuntur similique dolorem odit nostrum? Vero officiis ipsam
+        odio beatae atque, rerum voluptatem, ut sed a repellendus ea laboriosam
+        soluta cupiditate. Excepturi aut laboriosam architecto minima deleniti
+        atque esse harum debitis nobis, ab voluptates provident distinctio velit
+        exercitationem vel tempore sed explicabo? Vero excepturi exercitationem
+        cumque temporibus, voluptas, blanditiis asperiores ea doloribus dolores
+        dicta, eligendi optio. Magni magnam fugit modi velit saepe architecto
+        explicabo.
+      </p>
+    </section>
+    <section id="socials-section" [hidden]="section !== 'socials'">
+      <h2>Soundcloud</h2>
+      <p>
+        {{ 'Ajouter un soundcloud' }}
+      </p>
+      <h2>Youtube</h2>
+      <p>
+        {{ 'https://youtube.com/c/diegoimbert' }}
+      </p>
+      <h2>Discord</h2>
+      <p>
+        {{ 'RedRikudo#9179' }}
+      </p>
+      <h2>Twitch</h2>
+      <p>
+        {{ 'https://twitch.tv/redrikudo' }}
+      </p>
+    </section>
+    <section id="challenges-section" [hidden]="section !== 'challenges'">
+      <h2>Message après vote</h2>
+      <p>{{ 'Merci pour le vote \<3' }}</p>
+      <h2>Participations</h2>
+      <p>TODO</p>
+    </section>
+    <section id="actions-section" [hidden]="section !== 'actions'">
+      <button>Changer la banniere</button>
+      <button>Demander un nouveau nom</button>
+      <button>Deconnecter tous les appareils</button>
+      <button>Supprimer le compte</button>
+    </section>
+  </div>
+</div>

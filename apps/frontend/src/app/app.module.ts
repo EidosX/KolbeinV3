@@ -7,16 +7,25 @@ import { AuthModule } from './auth/auth.module';
 import { AuthComponent } from './auth/auth.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
+import { UserComponent } from './users/user/user.component';
+import { UsersModule } from './users/users.module';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([{ path: 'auth', component: AuthComponent }], {
-      initialNavigation: 'enabled',
-    }),
+    RouterModule.forRoot(
+      [
+        { path: 'auth', component: AuthComponent },
+        { path: 'users/:userId', component: UserComponent },
+      ],
+      {
+        initialNavigation: 'enabled',
+      }
+    ),
     AuthModule,
     BrowserAnimationsModule,
+    UsersModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
