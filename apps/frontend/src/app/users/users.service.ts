@@ -28,8 +28,4 @@ export class UsersService {
     });
     return observable;
   }
-
-  constructor() {
-    this.fetchUser('60b20c3fbc9fca0b34940f73');
-  }
 }

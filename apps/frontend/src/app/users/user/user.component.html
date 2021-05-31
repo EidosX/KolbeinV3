@@ -4,7 +4,7 @@
     src="https://res.cloudinary.com/redrikudo/image/upload/c_crop,h_1856,y_549/v1622296506/kolbeinapp/users/banners/default.jpg"
     alt="Bannière utilisateur"
   />
-  <h1>{{ (user$ | async)?.displayName || (user$ | async)?.twitchName }}</h1>
+  <h1>{{ user?.displayName || user?.twitchName }}</h1>
 </div>
 <div id="main">
   <ul id="sections-list">
@@ -18,39 +18,39 @@
       <h2>Identité</h2>
       <p>
         Nom d'apparence:
-        <strong>{{ (user$ | async)?.displayName || 'N/A' }}</strong>
+        <strong>{{ user?.displayName || 'N/A' }}</strong>
       </p>
       <p>
-        Pseudo Twitch: <strong>{{ (user$ | async)?.twitchName }}</strong>
+        Pseudo Twitch: <strong>{{ user?.twitchName }}</strong>
       </p>
       <p>
-        Rang: <strong>{{ rankStr$ | async }}</strong>
+        Rang: <strong>{{ user && rankStrings[user.rank] }}</strong>
       </p>
       <h2>Description</h2>
       <p>
-        {{ (user$ | async)?.description || 'Pas de description' }}
+        {{ user?.description || 'Pas de description' }}
       </p>
     </section>
     <section id="socials-section" [hidden]="section !== 'socials'">
       <h2>Soundcloud</h2>
-      <p *ngIf="!(soundcloud$ | async)">Pas de soundcloud</p>
-      <p *ngIf="soundcloud$ | async">{{ soundcloud$ | async }}</p>
+      <p *ngIf="!user?.socials?.soundcloud">Pas de soundcloud</p>
+      <p *ngIf="user?.socials?.soundcloud">{{ user?.socials?.soundcloud }}</p>
 
       <h2>Youtube</h2>
-      <p *ngIf="!(youtube$ | async)">Pas de chaine youtube</p>
-      <p *ngIf="youtube$ | async">{{ youtube$ | async }}</p>
+      <p *ngIf="!user?.socials?.youtube">Pas de chaine youtube</p>
+      <p *ngIf="user?.socials?.youtube">{{ user?.socials?.youtube }}</p>
 
       <h2>Discord</h2>
-      <p *ngIf="!(discord$ | async)">Pas de discord</p>
-      <p *ngIf="discord$ | async">{{ discord$ | async }}</p>
+      <p *ngIf="!user?.socials?.discord">Pas de discord</p>
+      <p *ngIf="user?.socials?.discord">{{ user?.socials?.discord }}</p>
 
       <h2>Twitch</h2>
-      <p *ngIf="!(twitch$ | async)">Pas de twitch</p>
-      <p *ngIf="twitch$ | async">{{ twitch$ | async }}</p>
+      <p *ngIf="!user?.socials?.twitch">Pas de twitch</p>
+      <p *ngIf="user?.socials?.twitch">{{ user?.socials?.twitch }}</p>
     </section>
     <section id="challenges-section" [hidden]="section !== 'challenges'">
       <h2>Message après vote</h2>
-      <p>{{ (user$ | async)?.voteThanksMsg || 'Merci pour le vote!' }}</p>
+      <p>{{ user?.voteThanksMsg || 'Merci pour le vote!' }}</p>
       <h2>Participations</h2>
       <p>TODO</p>
     </section>
