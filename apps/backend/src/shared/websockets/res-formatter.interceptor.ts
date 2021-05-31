@@ -8,6 +8,7 @@ import { WsException } from '@nestjs/websockets';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ErrorResDTO, ResDTO } from '@interfaces/dto/common.dto';
+import { InvalidIdError } from './errors/invalid-id.error';
 
 @Injectable()
 export class WsResFormatterInterceptor<T> implements NestInterceptor {
@@ -20,11 +21,12 @@ export class WsResFormatterInterceptor<T> implements NestInterceptor {
         status: 'Ok',
         ...(typeof r === 'object' ? r : { value: r }),
       })),
-      catchError((err) =>
-        err instanceof WsException
+      catchError((err) => {
+        if (err?.name === 'CastError') err = new InvalidIdError(err?.value);
+        return err instanceof WsException
           ? of({ status: err.name, message: err.message })
-          : throwError(err)
-      )
+          : throwError(err);
+      })
     );
   }
 }
